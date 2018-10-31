@@ -1,6 +1,7 @@
 pragma solidity ^0.4.25;
 
 /*                                                                                                                   
+             
                                                                                                                                                             
                   :$%`                                                                                                                                      
                 .!|':$:                                                                                                                                     
@@ -19,10 +20,11 @@ pragma solidity ^0.4.25;
                ;$$$$$$$%`                   .'.`'``..'. .. ''```'`.'.  .'`.`''`. .`. .``'..' ..  .''``..'  .. . .''.  `:'``.''`.`'.`'`.`'.`..``````..'`     
                  `|$$;                                                                                                                                      
                                                                                                                                                             
-
+                                                                                                                                                            
 */                                                                                                                                                   
 
 contract Ownable {
+
     address public owner;
 
     event OwnershipTransferred(address indexed previousOwner, address indexed newOwner);
@@ -44,6 +46,7 @@ contract Ownable {
 }
 
 contract ERC20 {
+
     function allowance(address owner, address spender) public view returns (uint256);
 
     function transferFrom(address from, address to, uint256 value) public returns (bool);
@@ -62,8 +65,9 @@ contract ERC20 {
 }
 
 
-contract LittleBeeX_Sender is Ownable {
-    function multisend(address _tokenAddr, address[] dests, uint256[] values) public onlyOwner returns (uint256) {
+contract LT_Sender_Public is Ownable {
+
+    function multisend(address _tokenAddr, address[] dests, uint256[] values) public returns (uint256) {
         uint256 i = 0;
         while (i < dests.length) {
            ERC20(_tokenAddr).transferFrom(msg.sender, dests[i], values[i]);
